@@ -15,13 +15,19 @@ video, object {
 	/*background: #000;*/
 }
 
-#blackSlide {
+#blackSlide{
 	z-index: 10;
 	display: none;
 	background: #000;
 	position: absolute;
 	top:0;
 	left:0;
-	width: 100%;
-	height: 100%;
+}
+#clock {
+	z-index: 10;
+	display: none;
+	position: absolute;
+	top:0;
+	left:0;
+	background: white;
 }

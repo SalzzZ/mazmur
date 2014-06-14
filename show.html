@@ -15,6 +15,23 @@
 			</h3>
 		</section>	
 	</script>
+	<script>
+		function startTime() {
+			console.log("SR");
+		    var today=new Date();
+		    var h=today.getHours();
+		    var m=today.getMinutes();
+		    var s=today.getSeconds();
+		    m = checkTime(m);
+		    s = checkTime(s);
+		    document.getElementById('clock').innerHTML = h+":"+m+":"+s;
+		    var t = setTimeout(function(){startTime()},500);
+		}
+		function checkTime(i) {
+		    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+		    return i;
+		}
+	</script>
 </head>
 <body>
 	
@@ -24,7 +41,12 @@
 			
 		</div>
 	</div>
-
+	<div id="videoWrap2">
+		<video id="videoBg4" autoplay loop autobuffer muted>
+		</video>
+		<video id="videoBg3" autoplay loop autobuffer muted>
+		</video>
+	</div>
 	<div id="videoWrap">
 		<video id="videoBg2" autoplay loop autobuffer muted>
 		</video>
@@ -37,9 +59,8 @@
 		<div id="imageBg">
 		</div>	
 	</div>
-
+	<div id="clock"></divf>
 	<div id="blackSlide">
-		
 	</div>
 
 	<script type="text/javascript" src="js/vendor/jquery.min.js"></script>
@@ -55,7 +76,8 @@
 			Reveal.initialize({
 				controls: false,
 				progress: false,
-				history: true,
+				history: false,
+				keyboard:false,
 				center: true,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
@@ -92,22 +114,22 @@
 			};
 			if (file.type.indexOf('video/') != -1) {
 				var cb1 = function(a, b) {
-	    		document.querySelector(b).src = fileURL;
-	    		$(b).maximage('maxcover');
-	    	};
-	    	var cb2 = function(a, b) {
-	    		document.querySelector(a).pause();
-	    	};
-	    	swapType('#videoWrap', '#imageWrap');
-	    	swapBg('#videoBg', '#videoBg2', cb1, cb2);
-	    } else if (file.type.indexOf('image/') != -1) {
-	    	var cb1 = function(a, b) {
-	    		$(b).html('<img src="'+fileURL+'" />');
-	    		$(b).maximage();
-	    	};
-	    	swapType('#imageWrap', '#videoWrap');
+	    			document.querySelector(b).src = fileURL;
+		    		$(b).maximage('maxcover');
+	    		};
+	    		var cb2 = function(a, b) {
+	    			document.querySelector(a).pause();
+	    		};
+	    		swapType('#videoWrap', '#imageWrap');
+	    		swapBg('#videoBg', '#videoBg2', cb1, cb2);
+	    	} else if (file.type.indexOf('image/') != -1) {
+		    	var cb1 = function(a, b) {
+	    			$(b).html('<img src="'+fileURL+'" />');
+		    		$(b).maximage();
+	    		};
+	    		swapType('#imageWrap', '#videoWrap');
 				swapBg('#imageBg', '#imageBg2', cb1, null);
-	    }
+	    	}
 		}
 
 		function clearSlide(status) {
@@ -120,9 +142,9 @@
 
 		function blankSlide(status) {
 			if (status) {
-				$('#blackSlide').fadeIn('slow');
+				$('#clock').fadeIn('slow');
 			} else {
-				$('#blackSlide').fadeOut('slow');
+				$('#clock').fadeOut('slow');
 			}
 		}
 
@@ -168,6 +190,7 @@
 			}
 		}
 		$(document).ready(function () {
+			startTime();
 			PresenterApp.init({lirikData: window.opener.lirikData.toJSON()});
 		});
 	</script>
