@@ -26,8 +26,8 @@
 		    var s=today.getSeconds();
 		    m = checkTime(m);
 		    s = checkTime(s);
-		    document.getElementById('date').innerHTML = namaHari[today.getDay()]+", "+today.getDate()+" "+namaBulan[today.getMonth()]+" "+today.getFullYear();
-		    document.getElementById('time').innerHTML = "<b>"+h+":"+m+":</b>"+s;
+		    document.getElementById('date').innerHTML = namaHari[today.getDay()]+", <b>"+today.getDate()+"</b> "+namaBulan[today.getMonth()]+" "+today.getFullYear();
+		    document.getElementById('time').innerHTML = "<b>"+h+"</b>:<small>"+m+":<small>"+s+"</small></small>";
 		    var t = setTimeout(function(){startTime()},500);
 		}
 		function checkTime(i) {
@@ -65,8 +65,11 @@
 	<div id="additionalText">
 		<div id="date">
 		</div>
-		<span id="time">
-		</span>
+		<div id="time">
+		</div>
+		<div id="time">
+		</div>
+		GBI PPL Citylink
 	</div>
 	<div id="blackSlide">
 	</div>
