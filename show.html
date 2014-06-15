@@ -18,13 +18,16 @@
 	<script>
 		function startTime() {
 			console.log("SR");
+			var namaHari=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
+			var namaBulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 		    var today=new Date();
 		    var h=today.getHours();
 		    var m=today.getMinutes();
 		    var s=today.getSeconds();
 		    m = checkTime(m);
 		    s = checkTime(s);
-		    document.getElementById('clock').innerHTML = h+":"+m+":"+s;
+		    document.getElementById('date').innerHTML = namaHari[today.getDay()]+", "+today.getDate()+" "+namaBulan[today.getMonth()]+" "+today.getFullYear();
+		    document.getElementById('time').innerHTML = "<b>"+h+":"+m+":</b>"+s;
 		    var t = setTimeout(function(){startTime()},500);
 		}
 		function checkTime(i) {
@@ -59,7 +62,12 @@
 		<div id="imageBg">
 		</div>	
 	</div>
-	<div id="clock"></divf>
+	<div id="additionalText">
+		<div id="date">
+		</div>
+		<span id="time">
+		</span>
+	</div>
 	<div id="blackSlide">
 	</div>
 
@@ -141,10 +149,19 @@
 		}
 
 		function blankSlide(status) {
+			console.log("SR2");
 			if (status) {
-				$('#clock').fadeIn('slow');
+				$('#blackSlide').fadeIn('slow');
 			} else {
-				$('#clock').fadeOut('slow');
+				$('#blackSlide').fadeOut('slow');
+			}
+		}
+
+		function showDateTime(status) {
+			if (status) {
+				$('#additionalText').fadeIn('slow');
+			} else {
+				$('#additionalText').fadeOut('slow');
 			}
 		}
 
@@ -158,10 +175,9 @@
 				$('video, object').maximage('maxcover');
 				// $('#imageBg').maximage();
 				reloadReveal();
-
 				$('#uploadBg').on('dragenter', this.dragFile);
-	      $('#uploadBg').on('dragover', this.dragFile);
-	      $('#uploadBg').on('drop', this.dropFile);
+	      		$('#uploadBg').on('dragover', this.dragFile);
+	      		$('#uploadBg').on('drop', this.dropFile);
 			},
 			show: function(lirikData) {
 				var template = _.template($('#lirik-view-template').html());

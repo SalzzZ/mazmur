@@ -11,9 +11,10 @@ var windowPreview;
     itemViewContainer: "#live-items",
     template: "#live-template",
     events: {
-      'click a#livePreview': 'livePreview',
+      'click a#livePreview' : 'livePreview',
       'click a#clearPreview': 'clearPreview',
       'click a#blankPreview': 'blankPreview',
+      'click a#dateTimePreview'    : 'dateTimePreview',
       
     },
     livePreview: function(e) {
@@ -40,13 +41,29 @@ var windowPreview;
     },
     blankPreview: function(e) {
       e.preventDefault();
+      console.log("SR");
       if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
-        if ($(e.currentTarget).find('span').attr('class') == 'fui-radio-unchecked') {
+      console.log("SR0");
+        if ($(e.currentTarget).find('span').attr('class') == 'fui-radio-checked') {
           windowPreview.blankSlide(true);
-          $(e.currentTarget).find('span').attr('class', 'fui-radio-checked');
+          $(e.currentTarget).find('span').attr('class', 'fui-radio-unchecked');
+          console.log("SR1a");
         } else {
           windowPreview.blankSlide(false);
-          $(e.currentTarget).find('span').attr('class', 'fui-radio-unchecked');
+          $(e.currentTarget).find('span').attr('class', 'fui-radio-checked');
+          console.log("SR1b");
+        }
+      }
+    },
+    dateTimePreview: function(e) {
+      e.preventDefault();
+      if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+        if ($(e.currentTarget).find('span').attr('class') == 'fui-cross') {
+          windowPreview.showDateTime(true);
+          $(e.currentTarget).find('span').attr('class', 'fui-time');
+        } else {
+          windowPreview.showDateTime(false);
+          $(e.currentTarget).find('span').attr('class', 'fui-cross');
         }
       }
     }
