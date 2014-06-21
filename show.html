@@ -15,26 +15,6 @@
 			</h3>
 		</section>	
 	</script>
-	<script>
-		function startTime() {
-			console.log("SR");
-			var namaHari=["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
-			var namaBulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-		    var today=new Date();
-		    var h=today.getHours();
-		    var m=today.getMinutes();
-		    var s=today.getSeconds();
-		    m = checkTime(m);
-		    s = checkTime(s);
-		    document.getElementById('date').innerHTML = namaHari[today.getDay()]+", <b>"+today.getDate()+"</b> "+namaBulan[today.getMonth()]+" "+today.getFullYear();
-		    document.getElementById('time').innerHTML = "<b>"+h+"</b>:<small>"+m+":<small>"+s+"</small></small>";
-		    var t = setTimeout(function(){startTime()},500);
-		}
-		function checkTime(i) {
-		    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
-		    return i;
-		}
-	</script>
 </head>
 <body>
 	
@@ -81,6 +61,24 @@
 	
 	<script src="js/vendor/reveal.min.js"></script>
 	<script>
+		function startTime() {
+			console.log("SR");
+			var namaHari=["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+			var namaBulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+		    var today=new Date();
+		    var h=today.getHours();
+		    var m=today.getMinutes();
+		    var s=today.getSeconds();
+		    m = checkTime(m);
+		    s = checkTime(s);
+		    document.getElementById('date').innerHTML = namaHari[today.getDay()]+", <b>"+today.getDate()+"</b> "+namaBulan[today.getMonth()]+" "+today.getFullYear();
+		    document.getElementById('time').innerHTML = "<b>"+h+"</b>:<small>"+m+":<small>"+s+"</small></small>";
+		    var t = setTimeout(function(){startTime()},500);
+		}
+		function checkTime(i) {
+		    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+		    return i;
+		}
 		// Full list of configuration options available here:
 		// https://github.com/hakimel/reveal.js#configuration
 		function reloadReveal() {
@@ -127,7 +125,7 @@
 				if (code==1){
 					var cb1 = function(a, b) {
 		    			document.querySelector(b).src = fileURL;
-				    		$(b).maximage('maxcover');
+				    		//$(b).maximage('maxcover');
 		    		};
 		    		var cb2 = function(a, b) {
 		    			document.querySelector(a).pause();
@@ -135,8 +133,10 @@
 		    		swapType('#videoWrap1', '#imageWrap');
 		    		swapBg('#videoBg1', '#videoBg2', cb1, cb2);
 		    	}else if (code==2){
-    				$('#videoBack').attr('src', fileURL).load();
-    				$('#videoBack').maximage('maxcover');
+    				$('#videoBack').fadeIn('slow').attr('src', fileURL).load();
+					$("#videoBack").bind('ended', function(){
+						$("#videoBack").fadeOut('slow');
+		  			});
 		    	}
 	    	} else if (file.type.indexOf('image/') != -1) {
 		    	var cb1 = function(a, b) {

@@ -23,7 +23,7 @@ var windowPreview;
         windowPreview.close();
         $(e.currentTarget).find('span').attr('class', 'fui-play');
       } else {
-        windowPreview = window.open("show.html", "_blank", "channelmode=yes, fullscreen=yes");  
+        windowPreview = window.open("show.html", "_blank", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,channelmode=yes, fullscreen=yes");  
         $(e.currentTarget).find('span').attr('class', 'fui-pause');
       }
     },
@@ -68,7 +68,7 @@ var windowPreview;
       if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
         if ($(e.currentTarget).find('span').attr('class') == 'fui-cross') {
           windowPreview.showFrontVideo(true);
-          $(e.currentTarget).find('span').attr('class', 'fui-eye');
+          $(e.currentTarget).find('span').attr('class', 'fui-photo');
         } else {
           windowPreview.showFrontVideo(false);
           $(e.currentTarget).find('span').attr('class', 'fui-cross');
