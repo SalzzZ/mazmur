@@ -1,6 +1,6 @@
 (function(MazmurApp) {
 	MazmurApp.addInitializer(function(){
-    MazmurApp.PreviewList.init();
+	MazmurApp.PreviewList.init();
   });
 
   MazmurApp.PreviewList = {
@@ -52,29 +52,33 @@
 	  itemViewContainer: "#preview-items",
 	  template: "#preview-template",
 	  events: {
-      // 'drop #uploadBg': 'dropFile'
-      'change #uploadBg': 'dropFile'
+	  // 'drop #uploadBg': 'dropFile'
+	  'change #uploadBg0': 'dropBack',
+	  'change #uploadBg1': 'dropFront',
 	  },
-    dropFile: function(e) {
-    	if (e.currentTarget.files.length) {
-    		e.preventDefault();
+		dropBack: function(e) {
+			if (e.currentTarget.files.length) {
+				e.preventDefault();
 				e.stopPropagation();
 				var file = e.currentTarget.files[0];
 				var type = file.type;
 				currentBg = file;
-				$('#bgName').html(file.name);
-				// windowPreview.changeBg(file);
-    	}
-      // if(e.originalEvent.dataTransfer){
-      //   if(e.originalEvent.dataTransfer.files.length) {
-      //     e.preventDefault();
-      //     e.stopPropagation();
-      //     var file = e.originalEvent.dataTransfer.files[0];
-      //     var type = file.type;
-      //     windowPreview.changeBg(file);
-      //   }   
-      // }
-    }
+				$('#bgNameBot').html(file.name);
+				windowPreview.changeBg(file,2);
+			}
+		},
+		dropFront: function(e) {
+			if (e.currentTarget.files.length) {
+				e.preventDefault();
+				e.stopPropagation();
+				var file = e.currentTarget.files[0];
+				var type = file.type;
+				currentBg = file;
+				$('#bgNameTop').html(file.name);
+				windowPreview.changeBg(file,1);
+			}
+		}
+
 	});
 	
 })(MazmurApp);

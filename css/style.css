@@ -18,7 +18,7 @@ a {
   height: 10%;
   overflow: auto;
 }
-#uploadBg0,#uploadBg1,#uploadBg2{
+#uploadBg0,#uploadBg1{
   float:right;
   padding: 4px;
   width: 93px;
