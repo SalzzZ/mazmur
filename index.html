@@ -58,12 +58,10 @@
   <script type="text/html" id="preview-template">
     <div class="box">
       <div class="box-header">
-        <span id="bgNameBot"></span>
         <input id="uploadBg0" class="btn uploadBg" type="file" accept="video/*" value="AudioVideo"/>
-        <h4>AV</h4>
-        <span id="bgNameTop"></span>
+        <h4 id="bgNameBot">AV</h4>
         <input id="uploadBg1" class="btn uploadBg" type="file" accept="video/*|image/*" value="Video/Image"/>
-        <h4>V/I</h4>
+        <h4 id="bgNameTop">V/I</h4>
       </div>
 
       
@@ -80,15 +78,15 @@
             <span class="fui-play"></span>
           </a>
           <a href="#" class="btn btn-inverse" id="blankPreview">
-            <span class="fui-radio-checked"></span>
+            <span class="fui-checkbox-unchecked"></span>
           </a>
           <a href="#" class="btn btn-inverse" id="dateTimePreview">
-            <span class="fui-cross"></span>
+            <span class="fui-time"></span>
           </a>
           <a href="#" class="btn btn-inverse" id="clearPreview">
-            <span class="fui-eye"></span>
+            <span class="fui-radio-unchecked"></span>
           </a>
-          <a href="#" class="btn btn-inverse" id="frontPreview">
+          <a href="#" class="btn btn-inverse active" id="frontPreview">
             <span class="fui-photo"></span>
           </a>
         </div>

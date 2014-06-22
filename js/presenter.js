@@ -3,6 +3,7 @@ var windowPreview;
 (function(MazmurApp) {
 
   MazmurApp.addInitializer(function(){
+    console.log("SR");
     MazmurApp.Presenter.init();
   });
 
@@ -30,48 +31,48 @@ var windowPreview;
     clearPreview: function(e) {
       e.preventDefault();
       if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
-        if ($(e.currentTarget).find('span').attr('class') == 'fui-eye') {
-          windowPreview.clearSlide(true);
-          $(e.currentTarget).find('span').attr('class', 'fui-cross');
-        } else {
+        if ($(e.currentTarget).hasClass('active')) {
           windowPreview.clearSlide(false);
-          $(e.currentTarget).find('span').attr('class', 'fui-eye');
+          $(e.currentTarget).removeClass('active');
+        } else {
+          windowPreview.clearSlide(true);
+          $(e.currentTarget).addClass('active');
         }
       }
     },
     blankPreview: function(e) {
       e.preventDefault();
       if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
-        if ($(e.currentTarget).find('span').attr('class') == 'fui-radio-checked') {
-          windowPreview.blankSlide(true);
-          $(e.currentTarget).find('span').attr('class', 'fui-radio-unchecked');
-        } else {
+        if ($(e.currentTarget).hasClass('active')) {
           windowPreview.blankSlide(false);
-          $(e.currentTarget).find('span').attr('class', 'fui-radio-checked');
+          $(e.currentTarget).removeClass('active');
+        } else {
+          windowPreview.blankSlide(true);
+          $(e.currentTarget).addClass('active');
         }
       }
     },
     dateTimePreview: function(e) {
       e.preventDefault();
       if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
-        if ($(e.currentTarget).find('span').attr('class') == 'fui-cross') {
-          windowPreview.showDateTime(true);
-          $(e.currentTarget).find('span').attr('class', 'fui-time');
-        } else {
+        if ($(e.currentTarget).hasClass('active')) {
           windowPreview.showDateTime(false);
-          $(e.currentTarget).find('span').attr('class', 'fui-cross');
+          $(e.currentTarget).removeClass('active');
+        } else {
+          windowPreview.showDateTime(true);
+          $(e.currentTarget).addClass('active');
         }
       }
     },
     frontPreview: function(e) {
       e.preventDefault();
       if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
-        if ($(e.currentTarget).find('span').attr('class') == 'fui-cross') {
-          windowPreview.showFrontVideo(true);
-          $(e.currentTarget).find('span').attr('class', 'fui-photo');
-        } else {
+        if ($(e.currentTarget).hasClass('active')) {
           windowPreview.showFrontVideo(false);
-          $(e.currentTarget).find('span').attr('class', 'fui-cross');
+          $(e.currentTarget).removeClass('active');
+        } else {
+          windowPreview.showFrontVideo(true);
+          $(e.currentTarget).addClass('active');
         }
       }
     }
