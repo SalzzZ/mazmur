@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mazmur Online</title>
+  <title>Sembah Dia</title>
   <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="css/vendor/bootstrap-responsive.min.css">
   <link rel="stylesheet" href="css/vendor/jquery.splitter.css">
@@ -19,6 +19,8 @@
   <script type="text/javascript" src="js/vendor/backbone.syphon.min.js"></script> 
   <script type="text/javascript" src="js/vendor/backbone.marionette.min.js"></script> 
   <script type="text/javascript" src="js/vendor/backbone.localStorage-min.js"></script>  
+  <script type="text/javascript" src="js/vendor/firebase.js"></script>  
+  <script type="text/javascript" src="js/vendor/backbone-firebase.js"></script>
 
   <script type="text/javascript" src="js/mazmurApp.js"></script>
   <script type="text/javascript" src="js/laguEntity.js"></script>
@@ -37,10 +39,10 @@
         <%= judul %>
       </h4>
       <div class="menu-lagu">
-        <a href="" class="btn btn-inverse" id="edit-lagu">
+        <a href="#" class="btn btn-inverse" id="edit-lagu">
           <span class="fui-new"></span>
         </a>
-        <a href="" class="btn btn-inverse" id="delete-lagu">
+        <a href="#" class="btn btn-inverse" id="delete-lagu">
           <span class="fui-cross"></span>
         </a>
       </div>
@@ -59,12 +61,10 @@
     <div class="box">
       <div class="box-header">
         <input id="uploadBg0" class="btn uploadBg" type="file" accept="video/*" value="AudioVideo"/>
-        <h4 id="bgNameBot">AV</h4>
+        <h4 id="bgNameBot">AudioVideo Background</h4>
         <input id="uploadBg1" class="btn uploadBg" type="file" accept="video/*|image/*" value="Video/Image"/>
-        <h4 id="bgNameTop">V/I</h4>
+        <h4 id="bgNameTop">Video/Image Background</h4>
       </div>
-
-      
       <ul id="preview-items">
       </ul>
     </div>
@@ -143,12 +143,12 @@
         </button>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">About</a></li>
-            <li class="active"><a href="try.html">Try</a></li>
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="https://github.com/SalzzZ/sembahDia">Fork me on GitHub</a></li>
+            <li><a href="http://www.youtube.com/watch?v=7rVbCwQRVYI">Watch the original version on YT</a></li>
           </ul>
           <ul class="nav pull-right">
-            <li><a href="">Login</a></li>
+            <!-- <li><a href="">Login</a></li> -->
           </ul>
         </div>
       </div>
@@ -158,9 +158,10 @@
     <div class="splitter-pane" style="overflow:hidden">
       <div class="box">
         <div class="box-header">
-          <input id="search-lagu" class="box-search-field" style="width:240px" type="search" value="" placeholder="Search Songs">
+          <input id="search-lagu" class="box-search-field" style="width:200px" type="search" value="" placeholder="Search Songs">
           <div class="btn-group">
             <a id="add-lagu" class="btn btn-inverse" href="#"><i class="fui-plus"></i></a>
+            <a id="load-lagu" class="btn btn-inverse" href="#"><i class="fui-list"></i></a>
           </div> 
         </div>
         <div id="schedule-list">
@@ -196,8 +197,8 @@
     $("#contentPanel").splitter({
       type: "v",
       // outline: true,
-      minLeft: 0,
-      maxLeft: 100,
+      minLeft: 250,
+      maxLeft: 350,
       anchorToWindow: true,
       accessKey: "L"
     });
@@ -206,8 +207,8 @@
       type: "v",
       // outline: true,
       anchorToWindow: true,
-      minRight: 300,
-      maxRight: 400,
+      minRight: 200,
+      maxRight: 500,
       accessKey: "R"
     });
   </script>
