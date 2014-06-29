@@ -18,9 +18,15 @@ a {
   height: 10%;
   overflow: auto;
 }
-#uploadBg0,#uploadBg1,input.btn{
+input.btn{
   border:3px dashed #2c3e50;
   border-radius: 8px;
+  float:right;
+  padding: 4px;
+  width: 93px;
+  cursor: pointer;
+}
+#uploadBg0,#uploadBg1{
   float:right;
   padding: 4px;
   width: 93px;
