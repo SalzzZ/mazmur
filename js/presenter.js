@@ -3,6 +3,7 @@ var windowPreview;
 (function(MazmurApp) {
 
   MazmurApp.addInitializer(function(){
+    console.log("SR");
     MazmurApp.Presenter.init();
   });
 
@@ -11,10 +12,11 @@ var windowPreview;
     itemViewContainer: "#live-items",
     template: "#live-template",
     events: {
-      'click a#livePreview': 'livePreview',
+      'click a#livePreview' : 'livePreview',
       'click a#clearPreview': 'clearPreview',
       'click a#blankPreview': 'blankPreview',
-      
+      'click a#dateTimePreview'    : 'dateTimePreview',
+      'click a#frontPreview'    : 'frontPreview'
     },
     livePreview: function(e) {
       e.preventDefault();
@@ -22,31 +24,55 @@ var windowPreview;
         windowPreview.close();
         $(e.currentTarget).find('span').attr('class', 'fui-play');
       } else {
-        windowPreview = window.open("show.html", "_blank", "channelmode=yes, fullscreen=yes");  
+        windowPreview = window.open("show.html", "_blank", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,channelmode=yes, fullscreen=yes");  
         $(e.currentTarget).find('span').attr('class', 'fui-pause');
       }
     },
     clearPreview: function(e) {
       e.preventDefault();
       if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
-        if ($(e.currentTarget).find('span').attr('class') == 'fui-eye') {
-          windowPreview.clearSlide(true);
-          $(e.currentTarget).find('span').attr('class', 'fui-cross');
-        } else {
+        if ($(e.currentTarget).hasClass('active')) {
           windowPreview.clearSlide(false);
-          $(e.currentTarget).find('span').attr('class', 'fui-eye');
+          $(e.currentTarget).removeClass('active');
+        } else {
+          windowPreview.clearSlide(true);
+          $(e.currentTarget).addClass('active');
         }
       }
     },
     blankPreview: function(e) {
       e.preventDefault();
       if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
-        if ($(e.currentTarget).find('span').attr('class') == 'fui-radio-unchecked') {
-          windowPreview.blankSlide(true);
-          $(e.currentTarget).find('span').attr('class', 'fui-radio-checked');
-        } else {
+        if ($(e.currentTarget).hasClass('active')) {
           windowPreview.blankSlide(false);
-          $(e.currentTarget).find('span').attr('class', 'fui-radio-unchecked');
+          $(e.currentTarget).removeClass('active');
+        } else {
+          windowPreview.blankSlide(true);
+          $(e.currentTarget).addClass('active');
+        }
+      }
+    },
+    dateTimePreview: function(e) {
+      e.preventDefault();
+      if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+        if ($(e.currentTarget).hasClass('active')) {
+          windowPreview.showDateTime(false);
+          $(e.currentTarget).removeClass('active');
+        } else {
+          windowPreview.showDateTime(true);
+          $(e.currentTarget).addClass('active');
+        }
+      }
+    },
+    frontPreview: function(e) {
+      e.preventDefault();
+      if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+        if ($(e.currentTarget).hasClass('active')) {
+          windowPreview.showFrontVideo(false);
+          $(e.currentTarget).removeClass('active');
+        } else {
+          windowPreview.showFrontVideo(true);
+          $(e.currentTarget).addClass('active');
         }
       }
     }

@@ -18,17 +18,24 @@
 </head>
 <body>
 	
-	<div class="reveal" id="uploadBg">
-		<!-- Any section element inside of this container is displayed as a slide -->
-		<div class="slides" id="slide-view">
-			
-		</div>
+	<div class="reveal" id="uploadBg0">
+		<!-- <div class="reveal" id="uploadBg1">
+				<div class="reveal" id="colorBg"> -->
+					<!-- Any section element inside of this container is displayed as a slide -->
+					<div class="slides" id="slide-view">
+					
+					</div>
+				<!-- </div>
+		</div> -->
 	</div>
-
-	<div id="videoWrap">
+	<div id="videoBackWrap">
+		<video id="videoBack" autoplay autobuffer>
+		</video>
+	</div>
+	<div id="videoWrap1">
 		<video id="videoBg2" autoplay loop autobuffer muted>
 		</video>
-		<video id="videoBg" autoplay loop autobuffer muted>
+		<video id="videoBg1" autoplay loop autobuffer muted>
 		</video>
 	</div>
 	<div id="imageWrap">
@@ -37,9 +44,14 @@
 		<div id="imageBg">
 		</div>	
 	</div>
-
+	<div id="additionalText">
+		<div id="date">
+		</div>
+		<div id="time">
+		</div>
+		GBI PPL Citylink
+	</div>
 	<div id="blackSlide">
-		
 	</div>
 
 	<script type="text/javascript" src="js/vendor/jquery.min.js"></script>
@@ -49,26 +61,46 @@
 	
 	<script src="js/vendor/reveal.min.js"></script>
 	<script>
+		var frontBgType=0,frontBg=1;
+		function startTime() {
+			var namaHari=["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+			var namaBulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+		    var today=new Date();
+		    var h=today.getHours();
+		    var m=today.getMinutes();
+		    var s=today.getSeconds();
+		    m = checkTime(m);
+		    s = checkTime(s);
+		    document.getElementById('date').innerHTML = namaHari[today.getDay()]+", <b>"+today.getDate()+"</b> "+namaBulan[today.getMonth()]+" "+today.getFullYear();
+		    document.getElementById('time').innerHTML = "<b>"+h+"</b>:<small>"+m+":<small>"+s+"</small></small>";
+		    var t = setTimeout(function(){startTime()},500);
+		}
+		function checkTime(i) {
+		    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+		    return i;
+		}
 		// Full list of configuration options available here:
 		// https://github.com/hakimel/reveal.js#configuration
 		function reloadReveal() {
+			console.log("SSSSS");
 			Reveal.initialize({
 				controls: false,
 				progress: false,
-				history: true,
+				history: false,
+				keyboard:true,
 				center: true,
-
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 			});
+			console.log("SR");
 		}
 		
 		function changeSlide(number) {
 			Reveal.slide(number, number, number);
 		}
-		function changeBg(file) {
+		function changeBg(file,code) {
 			var fileURL = URL.createObjectURL(file);
-			var doAmination = function(a, b, cb1, cb2) {
+			var doAnimation = function(a, b, cb1, cb2) {
 				$(b).hide();
 				if (cb1) cb1(a, b);
 				$(b).delay(200);
@@ -80,34 +112,49 @@
 			var swapBg = function(a, b, cb1, cb2) {
 				if ($(b).hasClass('active')) {
 					$(b).removeClass('active');
-					doAmination(b, a, cb1, cb2);
+					doAnimation(b, a, cb1, cb2);
 				} else {
 					$(b).addClass('active');
-					doAmination(a, b, cb1, cb2);
+					doAnimation(a, b, cb1, cb2);
 				}
 			};
 			var swapType = function(a, b) {
-				$(a).hide().fadeIn('slow');
-				$(b).show().fadeOut('slow');
+  				console.log(frontBg+"SR"+frontBgType);
+				if(frontBg==1){
+					$(a).hide().fadeIn('slow');
+					$(b).show().fadeOut('slow');
+				}
 			};
 			if (file.type.indexOf('video/') != -1) {
-				var cb1 = function(a, b) {
-	    		document.querySelector(b).src = fileURL;
-	    		$(b).maximage('maxcover');
-	    	};
-	    	var cb2 = function(a, b) {
-	    		document.querySelector(a).pause();
-	    	};
-	    	swapType('#videoWrap', '#imageWrap');
-	    	swapBg('#videoBg', '#videoBg2', cb1, cb2);
-	    } else if (file.type.indexOf('image/') != -1) {
-	    	var cb1 = function(a, b) {
-	    		$(b).html('<img src="'+fileURL+'" />');
-	    		$(b).maximage();
-	    	};
-	    	swapType('#imageWrap', '#videoWrap');
+				if (code==1){
+					var cb1 = function(a, b) {
+		    			document.querySelector(b).src = fileURL;
+			    		//$(b).maximage('maxcover');
+		    		};
+		    		var cb2 = function(a, b) {
+		    			document.querySelector(a).pause();
+		    		};
+		    		frontBgType=1;
+		    		swapType('#videoWrap1', '#imageWrap');
+		    		swapBg('#videoBg1', '#videoBg2', cb1, cb2);
+		    	}else if (code==2){
+    				$('#videoBack').fadeOut('fast',function(){
+    					$('#videoBack').fadeIn('fast');
+    					$('#videoBack').attr('src', fileURL).load();
+    				});
+					$("#videoBack").bind('ended', function(){
+						$("#videoBack").fadeOut('slow');
+		  			});
+		    	}
+	    	} else if (file.type.indexOf('image/') != -1) {
+		    	var cb1 = function(a, b) {
+	    			$(b).html('<img src="'+fileURL+'" />');
+		    		$(b).maximage();
+	    		};
+	    		frontBgType=2;
+	    		swapType('#imageWrap', '#videoWrap1');
 				swapBg('#imageBg', '#imageBg2', cb1, null);
-	    }
+	    	}
 		}
 
 		function clearSlide(status) {
@@ -126,20 +173,41 @@
 			}
 		}
 
+		function showDateTime(status) {
+			if (status) {
+				$('#additionalText').fadeIn('slow');
+			} else {
+				$('#additionalText').fadeOut('slow');
+			}
+		}
+		
+		function showFrontVideo(status) {
+			if (status) {
+				frontBg=1;
+				if (frontBgType==1)
+					$('#videoWrap1').fadeIn('slow');
+				else if (frontBgType==2)
+					$('#imageWrap').fadeIn('slow');
+			} else {
+				frontBg=0;
+				$('#videoWrap1').fadeOut('slow');
+				$('#imageWrap').fadeOut('slow');
+			}
+		}
+
 		var PresenterApp = {
 			lirikData: [],
 			init: function(options) {
-				_.bindAll(this, 'dragFile', 'dropFile');
+				//_.bindAll(this, 'dragFile', 'dropFile');
 				this.lirikData = options.lirikData;
 				this.$lirikView = $('#slide-view');
 				this.show(this.lirikData);
 				$('video, object').maximage('maxcover');
 				// $('#imageBg').maximage();
 				reloadReveal();
-
-				$('#uploadBg').on('dragenter', this.dragFile);
-	      $('#uploadBg').on('dragover', this.dragFile);
-	      $('#uploadBg').on('drop', this.dropFile);
+				/*$('#uploadBg1').on('dragenter', this.dragFile);
+	      		$('#uploadBg1').on('dragover', this.dragFile);
+	      		$('#uploadBg1').on('drop', this.dropFile);*/
 			},
 			show: function(lirikData) {
 				var template = _.template($('#lirik-view-template').html());
@@ -150,7 +218,7 @@
 					ctr++;
 				}, this);
 			},
-			dragFile: function(e) {
+			/*dragFile: function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 			},
@@ -159,15 +227,16 @@
 				  if(e.originalEvent.dataTransfer.files.length) {
 				    e.preventDefault();
 				    e.stopPropagation();
-				    /*UPLOAD FILES HERE*/
+				    /*UPLOAD FILES HERE
 				    var file = e.originalEvent.dataTransfer.files[0];
 				    var type = file.type;
 				    changeBg(file);
 				  }   
 				}
-			}
+			}*/
 		}
 		$(document).ready(function () {
+			startTime();
 			PresenterApp.init({lirikData: window.opener.lirikData.toJSON()});
 		});
 	</script>

@@ -18,13 +18,10 @@ a {
   height: 10%;
   overflow: auto;
 }
-#uploadBg{
-  border:3px dashed #2c3e50;
-  border-radius: 8px;
+#uploadBg0,#uploadBg1{
   float:right;
   padding: 4px;
-  margin-right: 10px;
-  width: 90px;
+  width: 93px;
   cursor: pointer;
 }
 /* Flat Box */
