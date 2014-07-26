@@ -5,7 +5,7 @@
 	<title>Sungguh Besar Setia-Mu</title>
 	<link rel="stylesheet" href="css/vendor/reveal.min.css">
 	<link rel="stylesheet" href="css/vendor/theme/default.css" id="theme">
-	<link rel="stylesheet" href="css/vendor/jquery.maximage.min.css">
+	<!-- <link rel="stylesheet" href="css/vendor/jquery.maximage.min.css"> -->
 	<link rel="stylesheet" href="css/show.css">
 
 	<script type="text/html" id="lirik-view-template">
@@ -138,8 +138,8 @@
 		    		swapType('#videoWrap1', '#imageWrap');
 		    		swapBg('#videoBg1', '#videoBg2', cb1, cb2);
 		    	}else if (code==2){
-    				$('#videoBack').fadeOut('fast',function(){
-    					$('#videoBack').fadeIn('fast');
+    				$('#videoBack').fadeOut('slow',function(){
+    					$('#videoBack').fadeIn('slow');
     					$('#videoBack').attr('src', fileURL).load();
     				});
 					$("#videoBack").bind('ended', function(){
