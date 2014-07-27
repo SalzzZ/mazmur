@@ -12,7 +12,7 @@
 			$('a#save-lagu').click(this.saveLagu);
 			$('a#load-lagu').click(this.loadLagu);
 			$('input#search-lagu').on('input', this.searchLagu);
-			$('#loadLagu').change(this.loadLagu);
+			$('#load-lagu').change(this.loadLagu);
 		},
 		show: function(lagus) {
 			var laguList = new MazmurApp.LaguViewList({
@@ -31,7 +31,8 @@
 			// MazmurApp.lagus.invoke('save');
 			var pom = document.createElement('a');
 		    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(MazmurApp.lagus.toJSON())));
-		    pom.setAttribute('download', 'song.txt');
+		    var tanggal = new Date();
+		    pom.setAttribute('download', tanggal.toDateString()+' songs.txt');
 		    pom.click();
 		},
 		loadLagu: function(e) {
