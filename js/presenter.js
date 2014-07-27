@@ -3,7 +3,6 @@ var windowPreview;
 (function(MazmurApp) {
 
   MazmurApp.addInitializer(function(){
-    console.log("SR");
     MazmurApp.Presenter.init();
   });
 

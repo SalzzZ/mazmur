@@ -61,7 +61,8 @@
       <div class="box-header">
         <input id="uploadBg0" class="btn uploadBg" type="file" accept="video/*" value="AudioVideo"/>
         <h4 id="bgNameBot">AudioVideo Background</h4>
-        <input id="uploadBg1" class="btn uploadBg" type="file" accept="video/*|image/*" value="Video/Image"/>
+        <input id="uploadBg1" class="btn uploadBg" type="file" accept="video/*" value="Video"/>
+        //<input id="uploadBg1" class="btn uploadBg" type="file" accept="video/*|image/*" value="Video/Image"/>
         <h4 id="bgNameTop">Video/Image Background</h4>
       </div>
       <ul id="preview-items">
@@ -195,8 +196,8 @@
     $("#contentPanel").splitter({
       type: "v",
       // outline: true,
-      minLeft: 250,
-      maxLeft: 350,
+      minLeft: 240,
+      maxLeft: 260,
       anchorToWindow: true,
       accessKey: "L"
     });
@@ -206,7 +207,7 @@
       // outline: true,
       anchorToWindow: true,
       minRight: 260,
-      maxRight: 400,
+      maxRight: 280,
       accessKey: "R"
     });
   </script>
