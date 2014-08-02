@@ -77,7 +77,7 @@
 			    });
 			    return isDupe ? false : Backbone.Collection.prototype.add.call(this, item);
 			}
-			if (search_text.length > 1) {
+			if (search_text.length > 2) {
 				$.get('http://smoothie.cloudapp.net/kidung/public/index.php/api/song/'+search_text, function(data) {
 					data.forEach(function (item) {
 						MazmurApp.lagus.add(new MazmurApp.Lagu(item));
