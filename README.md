@@ -1,9 +1,7 @@
-mazmur
+Sembah Dia
 ======
 
-Church Worship Lyrics Presentation Web Application
-
-![mazmur screenshot](https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-prn1/1014013_10201064598689969_1257027394_n.jpg)
+Church Presentation Web Application -- forked from Mazmur Online by Sonny Lazuardi (http://sonnylazuardi.github.io/mazmur/)
 
 Technology Stack
 ----------------
@@ -29,6 +27,3 @@ Usage
 5. `pushserve` in this directory will serve to localhost
 6. open in your browser `http://localhost:8000/`
 
-Video Demo
-----------
-https://www.youtube.com/watch?v=7rVbCwQRVYI
