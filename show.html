@@ -41,11 +41,13 @@
 		</div>	
 	</div> -->
 	<div id="additionalText">
-		<div id="date">
+		<div id="dateTime">
+			<div id="date">
+			</div>
+			<div id="time">
+			</div>
+			GBI PPL Citylink
 		</div>
-		<div id="time">
-		</div>
-		GBI PPL Citylink
 	</div>
 	<div id="blackSlide">
 	</div>
@@ -165,9 +167,9 @@
 
 		function showDateTime(status) {
 			if (status) {
-				$('#additionalText').fadeIn('slow');
+				$('#dateTime').fadeIn('slow');
 			} else {
-				$('#additionalText').fadeOut('slow');
+				$('#dateTime').fadeOut('slow');
 			}
 		}
 		

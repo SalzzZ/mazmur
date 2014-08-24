@@ -52,18 +52,17 @@
 	  itemViewContainer: "#preview-items",
 	  template: "#preview-template",
 	  events: {
-	  // 'drop #uploadBg': 'dropFile'
-	  'change #uploadBg0': 'dropBack',
+	  'change #uploadBg0': 'dropRear',
 	  'change #uploadBg1': 'dropFront',
 	  },
-		dropBack: function(e) {
+		dropRear: function(e) {
 			if (e.currentTarget.files.length) {
 				e.preventDefault();
 				e.stopPropagation();
 				var file = e.currentTarget.files[0];
 				var type = file.type;
 				currentBg = file;
-				$('#bgNameBot').html(file.name);
+				$('#bgNameBot > span').html(file.name);
 				windowPreview.changeBg(file,2);
 			}
 		},
@@ -74,7 +73,7 @@
 				var file = e.currentTarget.files[0];
 				var type = file.type;
 				currentBg = file;
-				$('#bgNameTop').html(file.name);
+				$('#bgNameTop > span').html(file.name);
 				windowPreview.changeBg(file,1);
 			}
 		}

@@ -8,8 +8,8 @@
 		init: function() {
 			_.bindAll(this, 'addLagu', 'searchLagu');
 			this.laguList = MazmurApp.laguList;
-			$('a#add-lagu').click(this.addLagu);
-			$('a#save-lagu').click(this.saveLagu);
+			$('div#add-lagu').click(this.addLagu);
+			$('div#save-lagu').click(this.saveLagu);
 			$('a#load-lagu').click(this.loadLagu);
 			$('input#search-lagu').on('input', this.searchLagu);
 			$('#load-lagu').change(this.loadLagu);

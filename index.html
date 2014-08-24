@@ -59,11 +59,24 @@
   <script type="text/html" id="preview-template">
     <div class="box">
       <div class="box-header">
-        <input id="uploadBg0" class="btn uploadBg" type="file" accept="video/*" value="AudioVideo"/>
-        <h4 id="bgNameBot">AudioVideo Background</h4>
-        <input id="uploadBg1" class="btn uploadBg" type="file" accept="video/*" value="Video"/>
-        <!--<input id="uploadBg1" class="btn uploadBg" type="file" accept="video/*|image/*" value="Video/Image"/>-->
-        <h4 id="bgNameTop">Video/Image Background</h4>
+        <div class="btn-group">
+            <div id="add-lagu" class="btn btn-inverse"><i class="fui-play"></i></div>
+            <div id="save-lagu" class="btn btn-inverse"><i class="fui-checkbox-unchecked"></i></div>
+        </div>
+        <div id="bgNameBot" class="btn btn-inverse uploaderWrapper">
+          <span>Change Rear Video</span>
+          <input id="uploadBg0" type="file" accept="video/*" value="AudioVideo"/>
+        </div>
+        <br>
+        <div class="btn-group">
+            <div id="add-lagu" class="btn btn-inverse"><i class="fui-play"></i></div>
+            <div id="save-lagu" class="btn btn-inverse"><i class="fui-checkbox-unchecked"></i></div>
+        </div> 
+        <div id="bgNameTop" class="btn btn-inverse uploaderWrapper">
+          <span>Change Front Video</span>
+          <input id="uploadBg1" type="file" accept="video/*" value="Video"/>
+        </div>
+          <!--<input id="uploadBg1" class="btn uploadBg" type="file" accept="video/*|image/*" value="Video/Image"/>-->
       </div>
       <ul id="preview-items">
       </ul>
@@ -73,22 +86,11 @@
   <script type="text/html" id="live-template">
     <div class="box">
       <div class="box-header">
-        <div class="btn-group" style="">
-          <a href="#" class="btn btn-inverse" id="livePreview">
-            <span class="fui-play"></span>
-          </a>
-          <a href="#" class="btn btn-inverse" id="blankPreview">
-            <span class="fui-checkbox-unchecked"></span>
-          </a>
-          <a href="#" class="btn btn-inverse" id="dateTimePreview">
-            <span class="fui-time"></span>
-          </a>
-          <a href="#" class="btn btn-inverse" id="clearPreview">
-            <span class="fui-radio-unchecked"></span>
-          </a>
-          <a href="#" class="btn btn-inverse active" id="frontPreview">
-            <span class="fui-photo"></span>
-          </a>
+        <div class="btn-group">
+          <a href="#" class="btn btn-inverse" id="livePreview"><span class="fui-play"></span></a>
+          <a href="#" class="btn btn-inverse" id="blankPreview"><span class="fui-checkbox-unchecked"></span></a>
+          <a href="#" class="btn btn-inverse" id="clearPreview"><span class="fui-radio-unchecked"></span></a>
+          <a href="#" class="btn btn-inverse" id="dateTimePreview"><span class="fui-time"></span></a>
         </div>
       </div>
       <ul id="live-items">
@@ -142,9 +144,9 @@
         </button>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><a href="http://sonnylazuardi.github.io/mazmur/">Mazmur Online</a></li>
-            <li><a href="https://github.com/SalzzZ/sembahDia">Fork on GitHub</a></li>
-            <li><a href="http://www.youtube.com/watch?v=7rVbCwQRVYI">Watch Mazmur Online on YT</a></li>
+            <li><a href="http://sonnylazuardi.github.io/mazmur/">Mazmur Online</a></li>
+            <li class="active"><a href="https://github.com/SalzzZ/sembahDia">Fork on GitHub</a></li>
+            <li><a href="http://salvianreynaldi.net">&copy;2014. Salvian Reynaldi.</a></li>
           </ul>
           <ul class="nav pull-right">
             <!-- <li><a href="">Login</a></li> -->
@@ -159,9 +161,12 @@
         <div class="box-header">
           <input id="search-lagu" class="box-search-field" style="width:200px" type="search" value="" placeholder="Search Songs">
           <div class="btn-group">
-            <a id="add-lagu" class="btn btn-inverse" href="#"><i class="fui-plus"></i></a>
-            <a id="save-lagu" class="btn btn-inverse" href="#"><i class="fui-new"></i></a>
-            <input id="load-lagu" class="btn" type="file" accept="text/*"/>
+            <div id="add-lagu" class="btn btn-inverse">New</div>
+            <div id="save-lagu" class="btn btn-inverse">Save</div>
+            <div class="uploaderWrapper btn btn-inverse">
+              <span>Load</span>
+              <input id="load-lagu" type="file" accept="text/*"/>
+            </div>
           </div> 
         </div>
         <div id="schedule-list">
@@ -186,11 +191,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="footer">
-    <div class="container">
-      <p>&copy; 2013 Mazmur Online by Sonny Lazuardi</p>
-    </div>
-  </div> -->
   
   <script type="text/javascript">
     MazmurApp.start();
@@ -207,9 +207,14 @@
       type: "v",
       // outline: true,
       anchorToWindow: true,
-      minRight: 250,
-      maxRight: 270,
+      minLeft: 600,
+      maxLeft: 800,
       accessKey: "R"
+    });
+    $(document).ready(function () {
+      $('.live-tools').hover(function(){
+        $(this).find('ul>li').toggle();
+      });
     });
   </script>
 
