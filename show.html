@@ -1,80 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Sungguh Besar Setia-Mu</title>
-	<link rel="stylesheet" href="css/vendor/reveal.min.css">
-	<link rel="stylesheet" href="css/vendor/theme/default.css" id="theme">
-	<link rel="stylesheet" href="css/show.css">
-
-	<script type="text/html" id="lirik-view-template">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Sembah Dia! Show
+		</title>
+		<link href="css/vendor/reveal.min.css" rel="stylesheet">
+		<link href="css/vendor/theme/default.css" id="theme" rel="stylesheet">
+		<link href="css/show.css" rel="stylesheet">
+		<script id="lirik-view-template" type="text/html">
 		<section>
 			<h3>
 				<%= lirik %>
 			</h3>
-		</section>	
-	</script>
-</head>
-<body>
-	
-	<div class="reveal" id="uploadBg0">
-		<!-- <div class="reveal" id="uploadBg1">
-				<div class="reveal" id="colorBg"> -->
-					<!-- Any section element inside of this container is displayed as a slide -->
-					<div class="slides" id="slide-view">
-					
-					</div>
-				<!-- </div>
-		</div> -->
-	</div>
-	<div id="videoBackWrap">
-		<video id="videoBack" autoplay autobuffer>
-		</video>
-	</div>
-	<div id="videoWrap1">
-		<video id="videoFront" autoplay loop autobuffer muted></video>
-	</div>
-	<!-- <div id="imageWrap">
+		</section>  
+		</script>
+	</head>
+	<body>
+		<div class="reveal" id="uploadBg0">
+			<!-- Any section element inside of this container is displayed as a slide -->
+
+			<div class="slides" id="slide-view">
+			</div>
+		</div>
+
+		<div id="videoRearWrap">
+			<video autoplay="" id="videoRear"></video>
+		</div>
+
+		<div id="videoFrontWrap">
+			<video autoplay="" id="videoFront" loop=""></video>
+		</div>
+		<!-- <div id="imageWrap">
 		<div id="imageBg2">
 		</div>
 		<div id="imageBg">
-		</div>	
+		</div>  
 	</div> -->
-	<div id="additionalText">
-		<div id="dateTime">
-			<div id="date">
-			</div>
-			<div id="time">
-			</div>
-			GBI PPL Citylink
-		</div>
-	</div>
-	<div id="blackSlide">
-	</div>
 
-	<script type="text/javascript" src="js/vendor/jquery.min.js"></script>
-	<script type="text/javascript" src="js/vendor/underscore-min.js"></script>
-	<script type="text/javascript" src="js/vendor/jquery.cycle.all.min.js"></script>
-	
-	<script src="js/vendor/reveal.min.js"></script>
-	<script>
-		var frontBgType=0,frontBg=1;
+		<div id="additionalText">
+			<div id="dateTime">
+				<div id="date">
+				</div>
+
+				<div id="time">
+				</div>
+			</div>
+
+			<div id="place">
+				GBI PPL Citylink
+			</div>
+
+			<div id="copyright">
+				Sembah Dia! (http://salzzz.github.io/sembahDia)
+			</div>
+		</div>
+
+		<div id="colorOverlay">
+		</div>
+
+		<div id="blackSlide">
+		</div>
+		<script src="js/vendor/jquery.min.js" type="text/javascript"></script> <script src="js/vendor/underscore-min.js" type="text/javascript"></script> <script src="js/vendor/jquery.cycle.all.min.js" type=
+"text/javascript"></script> <script src="js/vendor/reveal.min.js"></script> <script>
+var frontBgType=0,frontBg=1;
 		function startTime() {
 			var namaHari=["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
 			var namaBulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-		    var today=new Date();
-		    var h=today.getHours();
-		    var m=today.getMinutes();
-		    var s=today.getSeconds();
-		    m = checkTime(m);
-		    s = checkTime(s);
-		    document.getElementById('date').innerHTML = namaHari[today.getDay()]+", <b>"+today.getDate()+"</b> "+namaBulan[today.getMonth()]+" "+today.getFullYear();
-		    document.getElementById('time').innerHTML = "<b>"+h+"</b>:<small>"+m+":<small>"+s+"</small></small>";
-		    var t = setTimeout(function(){startTime()},500);
+			var today=new Date();
+			var h=today.getHours();
+			var m=today.getMinutes();
+			var s=today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('date').innerHTML = namaHari[today.getDay()]+", <b>"+today.getDate()+"<\/b> "+namaBulan[today.getMonth()]+" "+today.getFullYear();
+			document.getElementById('time').innerHTML = "<b>"+h+"<\/b>:<small>"+m+":<small>"+s+"<\/small><\/small>";
+			var t = setTimeout(function(){startTime()},500);
 		}
 		function checkTime(i) {
-		    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
-		    return i;
+			if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
 		}
 		// Full list of configuration options available here:
 		// https://github.com/hakimel/reveal.js#configuration
@@ -89,9 +94,12 @@
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 			});
 		}
-		
+
 		function changeSlide(number) {
 			Reveal.slide(number, number, number);
+		}
+		function changeOverlay(rgbaCol){
+			$('#colorOverlay').css('background-color', rgbaCol);
 		}
 		function changeBg(file,code) {
 			var fileURL = URL.createObjectURL(file);
@@ -102,7 +110,7 @@
 				$(b).fadeIn('slow', function() {
 					if (cb2) cb2(a, b);
 					$(a).fadeOut('slow');
-				});	
+				}); 
 			};
 			var swapBg = function(a, b, cb1, cb2) {
 				if ($(b).hasClass('active')) {
@@ -114,7 +122,7 @@
 				}
 			};
 			var swapType = function(a, b) {
-  				console.log(frontBg+"SR"+frontBgType);
+				console.log(frontBg+"SR"+frontBgType);
 				if(frontBg==1){
 					$(a).hide().fadeIn('slow');
 					$(b).show().fadeOut('slow');
@@ -122,38 +130,40 @@
 			};
 			if (file.type.indexOf('video/') != -1) {
 				if (code==1){
-		    		frontBgType=1;
-    				$('#videoFront').fadeOut('slow',function(){
-    					$('#videoFront').fadeIn('slow');
-    					$('#videoFront').attr('src', fileURL).load();
-    				});
+					frontBgType=1;
+					$('#videoFront').fadeOut('slow',function(){
+						$('#videoFront').fadeIn('slow');
+						$('#videoFront').attr('src', fileURL).load();
+					});
 					$("#videoFront").bind('ended', function(){
 						$("#videoFront").fadeOut('slow');
-		  			});
-		    	}else if (code==2){
-    				$('#videoBack').fadeOut('slow',function(){
-    					$('#videoBack').fadeIn('slow');
-    					$('#videoBack').attr('src', fileURL).load();
-    				});
-					$("#videoBack").bind('ended', function(){
-						$("#videoBack").fadeOut('slow');
-		  			});
-		    	}
-	    	}/* else if (file.type.indexOf('image/') != -1) {
+					});
+				}else if (code==2){
+					$('#videoRear').fadeOut('slow',function(){
+						$('#videoRear').fadeIn('slow');
+						$('#videoRear').attr('src', fileURL).load();
+					});
+					$("#videoRear").bind('ended', function(){
+						$("#videoRear").fadeOut('slow');
+					});
+				}
+			}/* else if (file.type.indexOf('image/') != -1) {
 				var cb1 = function(a, b) {
 					$(b).html('<img src="'+fileURL+'" />');
-	    		};
-	    		frontBgType=2;
-	    		swapType('#imageWrap', '#videoWrap1');
+				};
+				frontBgType=2;
+				swapType('#imageWrap', '#videoWrap1');
 				swapBg('#imageBg', '#imageBg2', cb1, null);
-	    	}*/
+			}*/
 		}
 
 		function clearSlide(status) {
 			if (status) {
-				$('.slides').fadeOut('slow');	
+				$('#colorOverlay').fadeOut('slow');
+				$('.slides').fadeOut('slow');
 			} else {
-				$('.slides').fadeIn('slow');	
+				$('#colorOverlay').fadeIn('slow');
+				$('.slides').fadeIn('slow');    
 			}
 		}
 
@@ -167,22 +177,22 @@
 
 		function showDateTime(status) {
 			if (status) {
-				$('#dateTime').fadeIn('slow');
+				$('#additionalText').fadeIn('slow');
 			} else {
-				$('#dateTime').fadeOut('slow');
+				$('#additionalText').fadeOut('slow');
 			}
 		}
-		
-		function showFrontVideo(status) {
+
+		function showVideo(videoWrap,status) {
 			if (status) {
 				frontBg=1;
 				if (frontBgType==1)
-					$('#videoWrap1').fadeIn('slow');
+					$(videoWrap).fadeIn('slow');
 				//else if (frontBgType==2)
 					//$('#imageWrap').fadeIn('slow');
 			} else {
 				frontBg=0;
-				$('#videoWrap1').fadeOut('slow');
+				$(videoWrap).fadeOut('slow');
 				//$('#imageWrap').fadeOut('slow');
 			}
 		}
@@ -209,6 +219,6 @@
 			startTime();
 			PresenterApp.init({lirikData: window.opener.lirikData.toJSON()});
 		});
-	</script>
-</body>
+		</script>
+	</body>
 </html>

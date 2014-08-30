@@ -24,7 +24,7 @@
 		template: '#lirik-view-template',
 		events: {
 			'click a.lirik-preview': 'lirikClicked',
-			'dblclick a.lirik-preview': 'lirikSelect',
+			'dblclick a.lirik-preview': 'lirikSelect'
 		},
 		initialize: function () {
 			this.model.bind('selected', this.lirikSelected, this);
@@ -52,31 +52,53 @@
 	  itemViewContainer: "#preview-items",
 	  template: "#preview-template",
 	  events: {
-	  'change #uploadBg0': 'dropRear',
-	  'change #uploadBg1': 'dropFront',
+		'change #uploadBgRear': 'dropVid',
+		'change #uploadBgFront': 'dropVid',
+		'click #clearFront'    : 'clearVid',
+		'submit #Overlay'   	 : 'changeCO'
 	  },
-		dropRear: function(e) {
+	  	changeCO:function(e){
+	  		e.preventDefault();
+	  		var values = {};
+			$.each($(e.currentTarget).serializeArray(), function(i, field) {
+    			values[field.name] = field.value;
+			});
+			var color = values['color'];
+			var rgbaCol = 'rgba(' + parseInt(color.slice(-6,-4),16)
+    		+ ',' + parseInt(color.slice(-4,-2),16)
+    		+ ',' + parseInt(color.slice(-2),16)
+    		+','+values['opacity']+')';
+			windowPreview.changeOverlay(rgbaCol);
+	  	},
+		dropVid: function(e) {
 			if (e.currentTarget.files.length) {
 				e.preventDefault();
 				e.stopPropagation();
 				var file = e.currentTarget.files[0];
 				var type = file.type;
-				currentBg = file;
-				$('#bgNameBot > span').html(file.name);
-				windowPreview.changeBg(file,2);
+				// currentBg = file;
+				if ($(e.currentTarget).data('layer')==="rear"){
+					$('#bgNameRear > span').html(file.name);
+					windowPreview.changeBg(file,2);
+				}
+				else{
+					$('#bgNameFront > span').html(file.name);
+					windowPreview.changeBg(file,1);
+				}
 			}
 		},
-		dropFront: function(e) {
-			if (e.currentTarget.files.length) {
-				e.preventDefault();
-				e.stopPropagation();
-				var file = e.currentTarget.files[0];
-				var type = file.type;
-				currentBg = file;
-				$('#bgNameTop > span').html(file.name);
-				windowPreview.changeBg(file,1);
-			}
-		}
+	    clearFront: function(e) {
+	      e.preventDefault();
+	      if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+	        if ($(e.currentTarget).hasClass('active')) {
+	          windowPreview.showVideo('#videoFrontWrap',true);
+	          $(e.currentTarget).removeClass('active');
+	        } else {
+	          windowPreview.showVideo('#videoFrontWrap',false);
+	          $(e.currentTarget).addClass('active');
+	        }
+	      }
+	    }
 
 	});
 	

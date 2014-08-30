@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sembah Dia</title>
+  <title>Sembah Dia!</title>
   <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="css/vendor/bootstrap-responsive.min.css">
   <link rel="stylesheet" href="css/vendor/jquery.splitter.css">
@@ -59,24 +59,33 @@
   <script type="text/html" id="preview-template">
     <div class="box">
       <div class="box-header">
-        <div class="btn-group">
-            <div id="add-lagu" class="btn btn-inverse"><i class="fui-play"></i></div>
-            <div id="save-lagu" class="btn btn-inverse"><i class="fui-checkbox-unchecked"></i></div>
+        <div id="Rear">
+          <div id="bgNameRear" class="btn btn-inverse uploaderWrapper">
+            <span>Change Rear AudVid</span>
+            <input id="uploadBgRear" type="file" accept="video/*" value="AudioVideo" data-layer="rear"/>
+          </div>
+          <div class="btn-group">
+              <div id="playRear" class="btn btn-inverse"><i class="fui-play"></i></div>
+              <div id="stopRear" class="btn btn-inverse"><i class="fui-checkbox-unchecked"></i></div>
+          </div>
         </div>
-        <div id="bgNameBot" class="btn btn-inverse uploaderWrapper">
-          <span>Change Rear Video</span>
-          <input id="uploadBg0" type="file" accept="video/*" value="AudioVideo"/>
+        <div id="Front">
+          <div id="bgNameFront" class="btn btn-inverse uploaderWrapper">
+            <span>Change Front Video</span>
+            <input id="uploadBgFront" type="file" accept="video/*" value="Video" data-layer="front"/>
+          </div>
+          <div class="btn-group">
+              <div id="playFront" class="btn btn-inverse"><i class="fui-play"></i></div>
+              <div id="stopFront" class="btn btn-inverse"><i class="fui-checkbox-unchecked"></i></div>
+              <div id="clearFront" class="btn btn-inverse"><i class="fui-eye"></i></div>
+          </div> 
         </div>
-        <br>
-        <div class="btn-group">
-            <div id="add-lagu" class="btn btn-inverse"><i class="fui-play"></i></div>
-            <div id="save-lagu" class="btn btn-inverse"><i class="fui-checkbox-unchecked"></i></div>
-        </div> 
-        <div id="bgNameTop" class="btn btn-inverse uploaderWrapper">
-          <span>Change Front Video</span>
-          <input id="uploadBg1" type="file" accept="video/*" value="Video"/>
-        </div>
-          <!--<input id="uploadBg1" class="btn uploadBg" type="file" accept="video/*|image/*" value="Video/Image"/>-->
+        <form id="Overlay">
+          <input required type="color" name="color" class="btn btn-inverse" style="width:47px">
+          <input required type="number" name="opacity" min="0" max="1" step="any" style="width:47px">
+          <input type="submit" class="btn btn-inverse">
+            (Change Solid Color Overlay)
+        </form>
       </div>
       <ul id="preview-items">
       </ul>
@@ -88,7 +97,7 @@
       <div class="box-header">
         <div class="btn-group">
           <a href="#" class="btn btn-inverse" id="livePreview"><span class="fui-play"></span></a>
-          <a href="#" class="btn btn-inverse" id="blankPreview"><span class="fui-checkbox-unchecked"></span></a>
+          <a href="#" class="btn btn-inverse" id="blankPreview"><span class="fui-eye"></span></a>
           <a href="#" class="btn btn-inverse" id="clearPreview"><span class="fui-radio-unchecked"></span></a>
           <a href="#" class="btn btn-inverse" id="dateTimePreview"><span class="fui-time"></span></a>
         </div>
@@ -137,21 +146,11 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container mainmenu">
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="http://sonnylazuardi.github.io/mazmur/">Mazmur Online</a></li>
+            <li><a href="http://sonnylazuardi.github.io/mazmur/">See Mazmur Online</a></li>
             <li class="active"><a href="https://github.com/SalzzZ/sembahDia">Fork on GitHub</a></li>
             <li><a href="http://salvianreynaldi.net">&copy;2014. Salvian Reynaldi.</a></li>
           </ul>
-          <ul class="nav pull-right">
-            <!-- <li><a href="">Login</a></li> -->
-          </ul>
-        </div>
       </div>
     </div>
   </div>
@@ -197,26 +196,22 @@
     $("#contentPanel").splitter({
       type: "v",
       // outline: true,
-      minLeft: 240,
-      maxLeft: 260,
+      minLeft: 180,
+      maxLeft: 200,
       anchorToWindow: true,
-      accessKey: "L"
+      //accessKey: "L"
     });
     // Second vertical splitter, nested in the right pane of the main one.
     $("#livePanel").splitter({
       type: "v",
       // outline: true,
+      minRight: 200,
+      maxRight: 240,
       anchorToWindow: true,
-      minLeft: 600,
-      maxLeft: 800,
-      accessKey: "R"
-    });
-    $(document).ready(function () {
-      $('.live-tools').hover(function(){
-        $(this).find('ul>li').toggle();
-      });
+      //accessKey: "R"
     });
   </script>
 
 </body>
 </html>
+

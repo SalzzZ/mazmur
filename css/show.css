@@ -1,5 +1,7 @@
-html {overflow-x:hidden;}
-body {margin:0; padding:0}
+	html {overflow-x:hidden;}
+body {
+	margin:0; padding:0
+}
 
 video, object {
 	bottom:0;right:0;
@@ -44,21 +46,42 @@ video, object {
 }
 #dateTime {
 	position: relative;
-  	top: 50%;
+  	top: 35%;
   	transform: translateY(-50%);
+}
+#place{
+	position: relative;
+  	top: 10%;
 	font-family: "Arial Black", Gadget, sans-serif;
-	text-shadow: 3px 3px 1px #222222;
 	font-size: 25px;
-	text-align: right;
-	display: none;
-	color:white;
+}
+#copyright{
+	position: relative;
+	top:20%;
+	font-family: "Arial", Gadget, sans-serif;
+	font-size: 15px;
+}
+#colorOverlay{
+	z-index: 8;
+  	background: rgba(0, 0, 0, 0.3);
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
 }
 #additionalText{
-	margin-right: 50px;
+ 	color:white;
+	display: none;
+	text-align: right;
+	margin-right: 40px;
 	z-index: 9;
-	width:40%;
+	width:35%;
 	height:25%;
 	position: absolute;
 	right:0;
 	bottom:0;
+}
+.slides{
+  z-index: 9;
 }

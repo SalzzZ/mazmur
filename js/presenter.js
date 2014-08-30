@@ -14,8 +14,7 @@ var windowPreview;
       'click a#livePreview' : 'livePreview',
       'click a#clearPreview': 'clearPreview',
       'click a#blankPreview': 'blankPreview',
-      'click a#dateTimePreview'    : 'dateTimePreview',
-      'click a#frontPreview'    : 'frontPreview'
+      'click a#dateTimePreview'    : 'dateTimePreview'
     },
     livePreview: function(e) {
       e.preventDefault();
@@ -24,7 +23,7 @@ var windowPreview;
         $(e.currentTarget).find('span').attr('class', 'fui-play');
       } else {
         windowPreview = window.open("show.html", "_blank", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,channelmode=yes, fullscreen=yes");  
-        $(e.currentTarget).find('span').attr('class', 'fui-pause');
+        $(e.currentTarget).find('span').attr('class', 'fui-checkbox-unchecked');
       }
     },
     clearPreview: function(e) {
@@ -59,18 +58,6 @@ var windowPreview;
           $(e.currentTarget).removeClass('active');
         } else {
           windowPreview.showDateTime(true);
-          $(e.currentTarget).addClass('active');
-        }
-      }
-    },
-    frontPreview: function(e) {
-      e.preventDefault();
-      if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
-        if ($(e.currentTarget).hasClass('active')) {
-          windowPreview.showFrontVideo(false);
-          $(e.currentTarget).removeClass('active');
-        } else {
-          windowPreview.showFrontVideo(true);
           $(e.currentTarget).addClass('active');
         }
       }
