@@ -1,10 +1,10 @@
 Sembah Dia
 ======
 
-Church Presentation Web Application -- forked from Mazmur Online by Sonny Lazuardi (http://sonnylazuardi.github.io/mazmur/)
+Church Presentation Web Application -- a modified version of Mazmur Online by Sonny Lazuardi (http://sonnylazuardi.github.io/mazmur/)
 
 Technology Stack
-----------------
+----------------
 
 1. Backbone.js
 2. Marionette.js
