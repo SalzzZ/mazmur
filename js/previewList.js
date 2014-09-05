@@ -79,10 +79,12 @@
 				// currentBg = file;
 				if ($(e.currentTarget).data('layer')==="rear"){
 					$('#bgNameRear > span').html(file.name);
+					//console.log("Rear");
 					windowPreview.changeBg(file,2);
 				}
 				else{
 					$('#bgNameFront > span').html(file.name);
+					//console.log("Front");
 					windowPreview.changeBg(file,1);
 				}
 			}
