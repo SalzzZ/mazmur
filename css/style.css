@@ -34,6 +34,9 @@ a {
   opacity: 0;
 }
 /* Flat Box */
+.btn.flash{
+  background-color: red;
+}
 .btn-group{
   right:0;
 }

@@ -25,11 +25,11 @@
 		</div>
 
 		<div id="videoRearWrap">
-			<video id="videoRear"></video>
+			<video id="videoRear" autoplay=""></video>
 		</div>
 
 		<div id="videoFrontWrap">
-			<video id="videoFront" loop="" muted=""></video>
+			<video id="videoFront" loop="" muted="" autoplay=""></video>
 		</div>
 		<!-- <div id="imageWrap">
 		<div id="imageBg2">
@@ -63,7 +63,14 @@
 		</div>
 		<script src="js/vendor/jquery.min.js" type="text/javascript"></script> <script src="js/vendor/underscore-min.js" type="text/javascript"></script> <script src="js/vendor/jquery.cycle.all.min.js" type=
 "text/javascript"></script> <script src="js/vendor/reveal.min.js"></script> <script>
-var frontBgType=0,frontBg=1;
+		var videoFile={};
+		var ganti={};
+		var frontBg=1;
+		var transitionSpeed='slow';
+		function setVideoFile(layer,file){
+			videoFile[layer]=file;
+			ganti[layer]=true;
+		}
 		function startTime() {
 			var namaHari=["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
 			var namaBulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
@@ -101,99 +108,75 @@ var frontBgType=0,frontBg=1;
 		function changeOverlay(rgbaCol){
 			$('#colorOverlay').css('background-color', rgbaCol);
 		}
-		function changeBg(file,code) {
+		function playPauseVid(layer){
+			if (ganti[layer]===true){
+				if(videoFile[layer]!==undefined);
+					changeBg(videoFile[layer],layer);
+				ganti[layer]=false;
+			}
+			else {
+				var video=$("#video"+layer).get(0);
+				if (video.paused){
+					video.play();
+					$("#video"+layer).fadeIn(transitionSpeed);
+				}
+				else
+					video.pause();
+			}
+		}
+		function stopVid(layer){
+			var video=$("#video"+layer).get(0);
+			$("#video"+layer).fadeOut(transitionSpeed,function(){
+				video.pause();
+				video.currentTime=0;
+			});
+		}
+		function changeBg(file,layer) {
 			var fileURL = URL.createObjectURL(file);
-			var doAnimation = function(a, b, cb1, cb2) {
-				$(b).hide();
-				if (cb1) cb1(a, b);
-				$(b).delay(200);
-				$(b).fadeIn('slow', function() {
-					if (cb2) cb2(a, b);
-					$(a).fadeOut('slow');
-				}); 
-			};
-			var swapBg = function(a, b, cb1, cb2) {
-				if ($(b).hasClass('active')) {
-					$(b).removeClass('active');
-					doAnimation(b, a, cb1, cb2);
-				} else {
-					$(b).addClass('active');
-					doAnimation(a, b, cb1, cb2);
-				}
-			};
-			var swapType = function(a, b) {
-				console.log(frontBg+"SR"+frontBgType);
-				if(frontBg==1){
-					$(a).hide().fadeIn('slow');
-					$(b).show().fadeOut('slow');
-				}
-			};
 			if (file.type.indexOf('video/') != -1) {
-				if (code==1){
-					frontBgType=1;
-					$('#videoFront').fadeOut('slow',function(){
-						$('#videoFront').fadeIn('slow');
-						$('#videoFront').attr('src', fileURL).load();
-					});
-					$("#videoFront").bind('ended', function(){
-						$("#videoFront").fadeOut('slow');
-					});
-				}else if (code==2){
-					$('#videoRear').fadeOut('slow',function(){
-						$('#videoRear').fadeIn('slow');
-						$('#videoRear').attr('src', fileURL).load();
-					});
-					$("#videoRear").bind('ended', function(){
-						$("#videoRear").fadeOut('slow');
-					});
-				}
-			}/* else if (file.type.indexOf('image/') != -1) {
-				var cb1 = function(a, b) {
-					$(b).html('<img src="'+fileURL+'" />');
-				};
-				frontBgType=2;
-				swapType('#imageWrap', '#videoWrap1');
-				swapBg('#imageBg', '#imageBg2', cb1, null);
-			}*/
+				$('#video'+layer).fadeOut(transitionSpeed,function(){
+					$('#video'+layer).attr('src', fileURL).load();
+					$('#video'+layer).fadeIn(transitionSpeed);
+				});
+				$("#video"+layer).bind('ended', function(){
+					$("#video"+layer).fadeOut(transitionSpeed);
+				});
+			}
 		}
 
 		function clearSlide(status) {
 			if (status) {
-				$('#colorOverlay').fadeOut('slow');
-				$('.slides').fadeOut('slow');
+				$('#colorOverlay').fadeOut(transitionSpeed);
+				$('.slides').fadeOut(transitionSpeed);
 			} else {
-				$('#colorOverlay').fadeIn('slow');
-				$('.slides').fadeIn('slow');    
+				$('#colorOverlay').fadeIn(transitionSpeed);
+				$('.slides').fadeIn(transitionSpeed);    
 			}
 		}
 
 		function blankSlide(status) {
 			if (status) {
-				$('#blackSlide').fadeIn('slow');
+				$('#blackSlide').fadeIn(transitionSpeed);
 			} else {
-				$('#blackSlide').fadeOut('slow');
+				$('#blackSlide').fadeOut(transitionSpeed);
 			}
 		}
 
 		function showDateTime(status) {
 			if (status) {
-				$('#additionalText').fadeIn('slow');
+				$('#additionalText').fadeIn(transitionSpeed);
 			} else {
-				$('#additionalText').fadeOut('slow');
+				$('#additionalText').fadeOut(transitionSpeed);
 			}
 		}
 
 		function showVideo(videoWrap,status) {
 			if (status) {
 				frontBg=1;
-				if (frontBgType==1)
-					$(videoWrap).fadeIn('slow');
-				//else if (frontBgType==2)
-					//$('#imageWrap').fadeIn('slow');
+				$(videoWrap).fadeIn(transitionSpeed);
 			} else {
 				frontBg=0;
-				$(videoWrap).fadeOut('slow');
-				//$('#imageWrap').fadeOut('slow');
+				$(videoWrap).fadeOut(transitionSpeed);
 			}
 		}
 

@@ -52,55 +52,72 @@
 	  itemViewContainer: "#preview-items",
 	  template: "#preview-template",
 	  events: {
-		'change #uploadBgRear': 'dropVid',
-		'change #uploadBgFront': 'dropVid',
-		'click #clearFront'    : 'clearVid',
-		'submit #Overlay'   	 : 'changeCO'
+		'change #uploadBgRear'	: 'dropVid',
+		'change #uploadBgFront'	: 'dropVid',
+		/*'click #clearFront'		: 'clearVid',*/
+		'change .Overlay'		: 'changeCO',
+		'click #playPauseRear'	: 'playPauseVid',
+		'click #playPauseFront'	: 'playPauseVid',
+		'click #stopFront'		: 'stopVid',
+		'click #stopRear'		: 'stopVid'
 	  },
-	  	changeCO:function(e){
-	  		e.preventDefault();
-	  		var values = {};
-			$.each($(e.currentTarget).serializeArray(), function(i, field) {
-    			values[field.name] = field.value;
-			});
-			var color = values['color'];
-			var rgbaCol = 'rgba(' + parseInt(color.slice(-6,-4),16)
-    		+ ',' + parseInt(color.slice(-4,-2),16)
-    		+ ',' + parseInt(color.slice(-2),16)
-    		+','+values['opacity']+')';
-			windowPreview.changeOverlay(rgbaCol);
-	  	},
-		dropVid: function(e) {
-			if (e.currentTarget.files.length) {
-				e.preventDefault();
-				e.stopPropagation();
-				var file = e.currentTarget.files[0];
-				var type = file.type;
-				// currentBg = file;
-				if ($(e.currentTarget).data('layer')==="rear"){
-					$('#bgNameRear > span').html(file.name);
-					//console.log("Rear");
-					windowPreview.changeBg(file,2);
-				}
-				else{
-					$('#bgNameFront > span').html(file.name);
-					//console.log("Front");
-					windowPreview.changeBg(file,1);
-				}
+		stopVid:function (e){
+			if (typeof(windowPreview)!='undefined' && !windowPreview.closed)
+				$("#playPause"+$(e.currentTarget).data('layer')).find('i').attr('class', 'fui-play');
+				windowPreview.stopVid($(e.currentTarget).data('layer'));
+		},
+		playPauseVid:function(e){
+			if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+				if ($(e.currentTarget).find('i').hasClass('fui-play'))
+					$(e.currentTarget).find('i').attr('class', 'fui-pause');
+				else
+					$(e.currentTarget).find('i').attr('class', 'fui-play');
+				windowPreview.playPauseVid($(e.currentTarget).data('layer'));
 			}
 		},
-	    clearFront: function(e) {
-	      e.preventDefault();
-	      if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
-	        if ($(e.currentTarget).hasClass('active')) {
-	          windowPreview.showVideo('#videoFrontWrap',true);
-	          $(e.currentTarget).removeClass('active');
-	        } else {
-	          windowPreview.showVideo('#videoFrontWrap',false);
-	          $(e.currentTarget).addClass('active');
-	        }
-	      }
-	    }
+		changeCO:function(e){
+			e.preventDefault();
+			if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+				var values = {};
+				$.each($('#OverlayForm').serializeArray(), function(i, field) {
+					values[field.name] = field.value;
+				});
+				var color = values['color'];
+				var rgbaCol = 'rgba(' + parseInt(color.slice(-6,-4),16)
+				+ ',' + parseInt(color.slice(-4,-2),16)
+				+ ',' + parseInt(color.slice(-2),16)
+				+','+values['opacity']+')';
+				windowPreview.changeOverlay(rgbaCol);
+			}
+		},
+		dropVid: function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+				var file;
+				var layer=$(e.currentTarget).data('layer');
+				if (e.currentTarget.files.length) {
+					file = e.currentTarget.files[0];
+					$('#bgName'+layer+' > span').html(file.name);
+				}else{
+					file=undefined;
+					$('#bgName'+layer+' > span').html('Change '+layer+' Video');
+				}
+				windowPreview.setVideoFile(layer,file);
+			}
+		}/*,
+		clearFront: function(e) {
+		  e.preventDefault();
+		  if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+			if ($(e.currentTarget).hasClass('active')) {
+			  windowPreview.showVideo('#videoFrontWrap',true);
+			  $(e.currentTarget).removeClass('active');
+			} else {
+			  windowPreview.showVideo('#videoFrontWrap',false);
+			  $(e.currentTarget).addClass('active');
+			}
+		  }
+		}*/
 
 	});
 	

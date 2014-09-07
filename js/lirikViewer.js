@@ -31,10 +31,6 @@
 			MazmurApp.lirikList.show(this.lirikViewList);
 			if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
 				windowPreview.PresenterApp.init({lirikData: lirikData.toJSON()});
-				if (currentBg) {
-					console.log(currentBg);
-					windowPreview.changeBg(currentBg);
-				}
 				windowPreview.blankSlide(false);
 			}
 		}

@@ -61,29 +61,27 @@
       <div class="box-header">
         <div id="Rear">
           <div id="bgNameRear" class="btn btn-inverse uploaderWrapper">
-            <span>Change Rear AudVid</span>
-            <input id="uploadBgRear" type="file" accept="video/*" value="AudioVideo" data-layer="rear"/>
+            <span>Change Rear Video</span>
+            <input id="uploadBgRear" type="file" accept="video/*" value="AudioVideo" data-layer="Rear"/>
           </div>
           <div class="btn-group">
-              <div id="playRear" class="btn btn-inverse"><i class="fui-play"></i></div>
-              <div id="stopRear" class="btn btn-inverse"><i class="fui-checkbox-unchecked"></i></div>
+              <div id="playPauseRear" class="btn btn-inverse" data-layer="Rear"><i class="fui-play"></i></div>
+              <div id="stopRear" class="btn btn-inverse" data-layer="Rear"><i class="fui-checkbox-unchecked"></i></div>
           </div>
         </div>
         <div id="Front">
           <div id="bgNameFront" class="btn btn-inverse uploaderWrapper">
             <span>Change Front Video</span>
-            <input id="uploadBgFront" type="file" accept="video/*" value="Video" data-layer="front"/>
+            <input id="uploadBgFront" type="file" accept="video/*" value="Video" data-layer="Front"/>
           </div>
           <div class="btn-group">
-              <div id="playFront" class="btn btn-inverse"><i class="fui-play"></i></div>
-              <div id="stopFront" class="btn btn-inverse"><i class="fui-checkbox-unchecked"></i></div>
-              <!--<div id="clearFront" class="btn btn-inverse"><i class="fui-eye"></i></div>-->
+              <div id="playPauseFront" class="btn btn-inverse" data-layer="Front"><i class="fui-play"></i></div>
+              <div id="stopFront" class="btn btn-inverse" data-layer="Front"><i class="fui-checkbox-unchecked"></i></div>
           </div> 
         </div>
-        <form id="Overlay">
-          <input required type="color" name="color" class="btn btn-inverse" style="width:50px">
-          <input required type="range" name="opacity" min="0" max="1" step="0.1" value="0.0" style="width:100px">
-          <input type="submit" class="btn btn-inverse" value="Apply">
+        <form id="OverlayForm">
+          <input required type="color" name="color" class="Overlay btn btn-inverse" style="width:50px">
+          <input required type="range" name="opacity" class="Overlay" min="0" max="1" step="0.1" value="0.0" style="width:100px">
         </form>
       </div>
       <ul id="preview-items">
@@ -96,7 +94,7 @@
       <div class="box-header">
         <div class="btn-group">
           <a href="#" class="btn btn-inverse" id="livePreview"><span class="fui-play"></span></a>
-          <a href="#" class="btn btn-inverse" id="blankPreview"><span class="fui-eye"></span></a>
+          <a href="#" class="btn btn-inverse" id="blackPreview"><span class="fui-eye"></span></a>
           <a href="#" class="btn btn-inverse" id="clearPreview"><span class="fui-radio-unchecked"></span></a>
           <a href="#" class="btn btn-inverse" id="dateTimePreview"><span class="fui-time"></span></a>
         </div>
