@@ -52,7 +52,7 @@
 			</div>
 
 			<div id="copyright">
-				Sembah Dia! (http://salzzz.github.io/sembahDia)
+				(http://salzzz.github.io/sembahDia)
 			</div>
 		</div>
 
@@ -126,10 +126,11 @@
 		}
 		function stopVid(layer){
 			var video=$("#video"+layer).get(0);
-			$("#video"+layer).fadeOut(transitionSpeed,function(){
-				video.pause();
-				video.currentTime=0;
-			});
+			if (video.readyState>0)
+				$("#video"+layer).fadeOut(transitionSpeed,function(){
+					video.pause();
+					video.currentTime=0;
+				});
 		}
 		function changeBg(file,layer) {
 			var fileURL = URL.createObjectURL(file);
