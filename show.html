@@ -146,13 +146,10 @@
 		}
 
 		function clearSlide(status) {
-			if (status) {
-				$('#colorOverlay').fadeOut(transitionSpeed);
+			if (status)
 				$('.slides').fadeOut(transitionSpeed);
-			} else {
-				$('#colorOverlay').fadeIn(transitionSpeed);
-				$('.slides').fadeIn(transitionSpeed);    
-			}
+			else
+				$('.slides').fadeIn(transitionSpeed);
 		}
 
 		function blankSlide(status) {

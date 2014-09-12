@@ -55,7 +55,7 @@
 		'change #uploadBgRear'	: 'dropVid',
 		'change #uploadBgFront'	: 'dropVid',
 		/*'click #clearFront'		: 'clearVid',*/
-		'change .Overlay'		: 'changeCO',
+		'input .Overlay'		: 'changeCO',
 		'click #playPauseRear'	: 'playPauseVid',
 		'click #playPauseFront'	: 'playPauseVid',
 		'click #stopFront'		: 'stopVid',
