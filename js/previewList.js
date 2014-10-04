@@ -59,7 +59,8 @@
 		'click #playPauseRear'	: 'playPauseVid',
 		'click #playPauseFront'	: 'playPauseVid',
 		'click #stopFront'		: 'stopVid',
-		'click #stopRear'		: 'stopVid'
+		'click #stopRear'		: 'stopVid',
+		'input #theCBText'		: 'changeCBText'
 	  },
 		stopVid:function (e){
 			if (typeof(windowPreview)!='undefined' && !windowPreview.closed)
@@ -105,7 +106,14 @@
 				}
 				windowPreview.setVideoFile(layer,file);
 			}
-		}/*,
+		},
+		changeCBText:function(e){
+			e.preventDefault();
+			if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+				windowPreview.changeCBText($(e.currentTarget).val());
+			}
+		}
+		/*,
 		clearFront: function(e) {
 		  e.preventDefault();
 		  if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {

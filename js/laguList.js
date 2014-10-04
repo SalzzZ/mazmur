@@ -126,6 +126,9 @@
 		},
 		lirikLagu: function() {
 			MazmurApp.PreviewList.previewTemp.at(0).trigger('dblclicked');
+			if (typeof(windowPreview)!='undefined' && !windowPreview.closed) {
+				windowPreview.changeCBText(this.model.get('judul'));
+			}
 		},
 		laguDeselected: function() {
 			this.$el.removeClass('active');

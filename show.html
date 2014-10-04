@@ -51,8 +51,9 @@
 				GBI PPL Citylink
 			</div>
 
-			<div id="copyright">
-			</div>
+			<h1 id="centerBotText">
+				sembahDia!
+			</h1>
 		</div>
 
 		<div id="colorOverlay">
@@ -122,6 +123,9 @@
 				else
 					video.pause();
 			}
+		}
+		function changeCBText(text){
+			document.getElementById('centerBotText').innerHTML=text;
 		}
 		function stopVid(layer){
 			var video=$("#video"+layer).get(0);
