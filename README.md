@@ -1,4 +1,4 @@
-Sembah Dia
+sembahDia!
 ======
 
 Church Presentation Web Application -- a modified version of Mazmur Online by Sonny Lazuardi (http://sonnylazuardi.github.io/mazmur/)
