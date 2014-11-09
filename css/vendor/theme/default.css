@@ -16,12 +16,12 @@
  *********************************************/
 body {
   text-shadow: 1px 1px 8px rgba(0, 0, 0, 1);
-  background: -moz-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
-  /background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555a5f), color-stop(100%, #1c1e20));
-  background: -webkit-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
-  background: -o-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
-  background: -ms-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
-  background: radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+  background: -moz-radial-gradient(center, circle cover, #030303 0%, #010101 100%);
+  /background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #030303), color-stop(100%, #010101));
+  background: -webkit-radial-gradient(center, circle cover, #030303 0%, #010101 100%);
+  background: -o-radial-gradient(center, circle cover, #030303 0%, #010101 100%);
+  background: -ms-radial-gradient(center, circle cover, #030303 0%, #010101 100%);
+  background: radial-gradient(center, circle cover, #030303 0%, #010101 100%);
 }
 
 .reveal {

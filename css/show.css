@@ -49,7 +49,7 @@ video, object {
 	position: relative;
 	text-align: center;
 	font-family: "Arial", Gadget, sans-serif;
-	font-size: 2em;
+	font-size: 3em;
 }
 #colorOverlay{
 	z-index: 8;
